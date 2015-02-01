@@ -149,13 +149,14 @@ $(document).ready(function() {
 
   $('#subsform').submit(function() {
     $.ajax({
-      type: 'POST',
-      url: 'http://cmlab.cansever.me/php/contact.php',
+      type: "POST",
+      url: "http://cmlab.cansever.me/php/contact.php",
       data: $(this).serialize(),
       success: function(msg) {
         if (msg == 'SEND') {
           $('.success-message').hide();
           $('.error-message').hide();
+          $('.success-message').html('Thanks a lot!');
           $('.error-message').fadeIn().delay(3000).fadeOut();
         } else {
           $('.error-message').hide();
