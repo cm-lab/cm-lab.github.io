@@ -147,25 +147,22 @@ $(document).ready(function() {
   $('.success-message').hide();
   $('.error-message').hide();
 
-  $('.subscribe form').submit(function() {
-    var postdata = $('.subscribe form').serialize();
+  $('#subsform').submit(function() {
     $.ajax({
       type: 'POST',
-      url: 'http://cmlab.cansever.me/php/sendmail.php',
-      data: postdata,
-      dataType: 'json',
-      success: function(json) {
-        if (json.valid == 0) {
+      url: 'http://cmlab.cansever.me/php/contact.php',
+      data: $(this).serialize(),
+      success: function(msg) {
+        if (msg == 'SEND') {
           $('.success-message').hide();
           $('.error-message').hide();
-          $('.error-message').html(json.message);
           $('.error-message').fadeIn().delay(3000).fadeOut();
         } else {
           $('.error-message').hide();
           $('.success-message').hide();
           $('.subscribe form').hide().delay(3000).fadeIn();
           $('.subscribe form input').val('');
-          $('.success-message').html(json.message);
+          $('.success-message').html('Thanks a lot!');
           $('.success-message').fadeIn().delay(2000).fadeOut();
         }
       }

@@ -85,12 +85,10 @@ $(document).ready(function() {
   $('.error-message').hide();
 
   $('.subscribe form').submit(function() {
-    var postdata = $('.subscribe form').serialize();
     $.ajax({
       type: 'POST',
       url: 'http://cmlab.cansever.me/php/sendmail.php',
-      data: postdata,
-      dataType: 'json',
+      data: $(this).serialize(),
       success: function(json) {
         if (json.valid == 0) {
           $('.success-message').hide();
